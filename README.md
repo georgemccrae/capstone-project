@@ -14,7 +14,7 @@ Using machine learning to predict what makes a Spotify song popular
 * [EDA](https://github.com/georgemccrae/capstone-project#eda)
 * [Modelling](https://github.com/georgemccrae/capstone-project#modelling)
 * [Evaluation](https://github.com/georgemccrae/capstone-project#evaluation)
-* [Final Thoughts and Plans for the Future](https://github.com/georgemccrae/capstone-project#final-thoughts-and-plans-for-the-future)
+* [Final Thoughts and Plans for the Future](https://github.com/georgemccrae/capstone-project#plans-for-the-future)
 
 ## Technologies Used
 * Python 3.0
@@ -35,13 +35,11 @@ Using machine learning to predict what makes a Spotify song popular
 
 ## Introduction
 
-
 #### 
 
--on souncloud / itunes he listed track's genre as 'country', an ingenuious tactic in remanouvering the alogrithmn  rather than trying to compete with songs in today's oversaturated hip-hip genre. 
+I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
 
--hill used memes / red-dead / search engine optimisation / tiktok / remixs (count towards chat placement) / being in multiple genre
-Looking across the internet I saw that Lending Club (a peer to peer lending company) releases a massive amount of data every quarter on the status of every loan opened with them during that quarter. Therefore I thought it would be really interesting to predict the outcome of loans based on information you would know during the lifetime of the loan.The results of this project could have an exciting impact on how Lending Club looks at it's loanees as if we can predict a loan is going to default then we can take preventative measures to stop the loan from defaulting. Additionally as predicting the outcome of loans is quite difficult, it required me to seek out niche, powerful techniques that were previously unknown to me.
+I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
 
 
 ## Gathering the Data
@@ -50,11 +48,19 @@ Looking across the internet I saw that Lending Club (a peer to peer lending comp
 
 For this project the data was obtained in two parts. 
 
-Firstly I used the Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. Because of time constraints I ended up using a csv file from guoguo12. 
+Firstly I used the Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. Because of time constraints I ended up using a csv file from guoguo12. Billboard's ranking method for the Top 100 is excellent because it stayed relevant with its ranking policy with the changing methods of discoverning and purchasing music.   [(more info here)](https://en.wikipedia.org/wiki/Billboard_Hot_100#Hot_100_policy_changes) 
+
+- 1958-1991: ranking determined by ratio of singles sales and airplay
+- 1991: Billboard begins collecting sales data digitally (using SoundScan) for quicker and more accurate charts
+- 1998: Billboard drops requirement that song must be released as a single to appear on the chart
+- 2005: Digital downloads (iTunes) included
+- 2012: On-demand streaming services (Spotify, Rhapsody) included
+- 2013: Video views (YouTube) included
 
 * [Billboard Top 100 Data](https://github.com/guoguo12/billboard-charts)
 
-I then used plamere's Spotify’s API to extract information about the artist (number of followers, genre) and the musical components (e.g. danceability, tempo, duration) of the respective tracks. 
+The next step was to get all Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track. I used plamere's Spotify’s API to extract this. The Spotify API had about 96.5% of the ~21,200 songs to appear on these charts. For the remaining 753, I plugged in average numbers for each acoustic feature, just to have some placeholder data. I then put all those acoustic metadata back into the full Billboard list. 
+
 
 * [Spotify Data](https://github.com/plamere/spotipy)
 
@@ -63,11 +69,11 @@ I then used plamere's Spotify’s API to extract information about the artist (n
 
 * [Link to beginning of relevant section of Notebook](https://github.com/danch12/GA_Capstone/blob/master/Data%20Gathering%20and%20Cleaning%20Stage.ipynb?short_path=8abe515#L816)
 
-There was extensive cleaning of the Billboard data. In main, because in order to extract the data of the correct artist from the Spotify API, I had to remove featuring artists. 
+There was extensive cleaning of the Billboard data. The largest issue was that, Spotify's API retrieved a number of results for each search query. If the name of the artist was too long it would produce no results, therefore I had to remove featuring artists. Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. Luckily, the Python package Fuzzy Wuzzy helped massively. 
 
-There weren't many NA values as the Billboard data was fairly complete, however I had to make sure that the two datasets matched. 
+Other than this merging problem, there weren't many NA values as the Billboard data was fairly complete.
 
-I then removed outliers
+Further, there were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
 
 Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
 
@@ -76,19 +82,21 @@ Once the data was clean, I engineered some new features, which seemed to be impo
 
 [Link to EDA](https://github.com/danch12/GA_Capstone/blob/master/EDA.ipynb)
 
-My initial visual analysis graphically illustrated trends in the musical components, but more importantly to illustrate that my target variable, Spotify popularity, was  skewed to be higher the more recent it is. 
+My initial visual analysis graphically illustrated trends in the musical components. 
 
-After cleaning the dataset I decided to explore the data visually. First I created some correlation heatmaps. You can see from below that there are a couple of areas that look extremely correlated, however a lot of these variables were later dropped before modeling because you would only know about them once the loan had completed. Having said that, the heatmap still indicates that using PCA would be a good option and this is an avenue I would like to look into in the future. After looking at the correlation of the variables generally, I looked the correlation between my target variable and my independent variables. Unfortunately almost all the most correlated variables had to be removed for the same reason as above. This left me with a couple of variables that had some correlation with loan outcome but nothing standout. The next step was to create bar graphs that visualized the distribution of good vs bad loans in different categorical variables in the data. Finally I used scatter graphs and histograms to further explore the relationship between various variables, focusing mainly on loanee income as on the face of it, income would seem like a key factor in loans defaulting.
+An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. Here is Spotify's description of how it is calculated.
 
-Following on from this I looked at the distribution of good vs bad loans in different categorical variables in the data.
+- - > “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
+
 
 The main takeaways from the EDA were - 
-1) We should focus on lower grade loans as they seem the most volatile
-2) Income does not have as big of an impact on loans being paid as one may believe
-3) There does not seem like any linear seperation between the two classes so linear models may perform badly
-4) PCA seems like a good tool to use in this project as many independent variables are correlated
+1) Rock and soul were the most popular music genres from the mid-60s to mid-70s. But as soul peaked in 1974 and slowly began to fade, rock continued to climb. Its run from 1982-86, when rock musicians occupied nearly 60% of available Hot 100 spots, is by far the most dominant stretch for any one genre.
 
+2) Despite all the attention paid to boy bands in the late '90s, it seems like R&B had no problem flourishing. Acts like Boyz II Men and Janet Jackson propelled the genre's popularity and ingratiated it with the masses.
 
+3) Country has had a tumultuous ride in the history of popular American music. It enjoyed middling popularity through the mid-'80s, when it all but dropped off the charts. Since 1999, however, it's seen a noticeable resurgence.
+
+4) Music trends have swung in favor of pop and hip-hop in the 2010s. Pop has owned the largest share of Billboard spots dating back to 2006, but has seen its popularity decline slightly since 2011. Meanwhile, rap has come on strong in the last two years. In fact, rap is on pace to occupy more than 30% of Hot 100 spots this year, higher than its previous peak in 2004.
 
 
 
@@ -96,28 +104,25 @@ The main takeaways from the EDA were -
 
 [Link to beginning of modelling section](https://github.com/danch12/GA_Capstone/blob/master/Capstone%20Modelling%20and%20Evaluation%20phase.ipynb?short_path=90fa5f0#L262)
 
-For my modelling I used linear regression, naive bayes and SVM to get a high score of 0.68, a huge increase from 0.22 after I engineered the new features. By examining my coefficients I found that the variables: number of Spotify followers, artist familiarity and track longevity had the largest impact on track popularity.
+Before engineering new features, I ran a quick linear regression to see roughly what the cross-valdiated score was; at 0.22 I realised that this project needed a lot more work.
 
+After engineering the all-important new features, my highest cross-validated score of 0.68, a huge increase.
 
-As alluded to in the EDA section, I was not hopeful when running a logistic regression model so I quickly diverted my attention towards other tree based models such as random forest and ada boost. I found much more success in these models so eventually I tried an XG boost model to comparitively great success with a [cv](https://github.com/danch12/GA_Capstone/blob/master/Capstone%20Modelling%20and%20Evaluation%20phase.ipynb?short_path=90fa5f0#L642) score of 0.804  . Overall I still was not happy with the results from the models which lead me to using NLP.
+By examining my coefficients I found that the variables: number of Spotify followers, artist familiarity and track longevity had the largest impact on track popularity.
+
 
 
 ## Evaluation
 
+As I mentionned in the EDA section: you’re aiming to get your songs into automatically curated playlists or wonder how to get higher rankings in Spotify popularity index make sure you’re getting your listens now. That probably means it’s good to release songs frequently to stay relevant in the Spotify world.
+
+The obvious trend is that the Billboard Hot 100 will continue to musically converge, a path that might just be the natural progression of popular culture. give it enough time and we’ll all be listening to the same thing.
 
 
-To give an overview of model performance, the stacked model had a cv accuracy score of 0.815 compared to the 0.804 of the original XG boost. Further the ROC area under the curve for the stacked model was 0.9 compared to the 0.87 of the original model. Last the precision scores close but the stacked model still outperformed the unstacked model.
+## Plans for the Future
+Due to time constraints I focused on the musical components and artist information derived from the Spotify API. However there are several other potentially brilliant predictors of popularity I can't wait to add:
 
-Finally I thought that it could be a lot more harmful to predict a loan to be payed off, for it to then default. Therefore I reduced the amount of false negatives by reducing the threshold probability at which the model predicted a loan to be bad. This resulted in a precision of 0.91 for predicting fully paid loans. 
-
-
-
-
-## Final Thoughts and Plans for the Future
-
-obvious trend is that the Billboard Hot 100 will continue to musically converge, a path that might just be the natural progression of popular culture. give it enough time and we’ll all be listening to the same thing
-
-
-Overall it can be argued that on a large scale the difference in the two models would lead to a substantial increase in bad loan detection and therefore be worth the extra computational costs. Some important features common across all models made sense- those including late fees gathered throughout the loan, interest rate, and DTI. However it was suprising that credit inquiries into the loan had such a large effect- easily the largest impact feature.
-
-In the future I would like to further this project by first increasing the scope of the data to include other years maybe eventually using PySpark to achieve this, and second try to obtain data on the full lifecyle of loans to gain a more concrete idea of the features available whilst a loan is still active as this part of the project proved difficult. I would also like to try different combinations of stacked models to see if they could provide better results and justify the extra complexity further. Using prediction probabilities has a lot of promise and I would want to further optimise the second level model that uses these. Finally although I tried using PCA to reduce model complexity,I did not have time to optimize hyperparameters for models using features processed by PCA, in the future I would like to do this as it may somewhat offset the increase in model complexity for a stacked model.
+LYRICS (GENIUS API)
+NO. PRODUCERS (GENIUS API)
+ARTIST LOCATION (WIKIPEDIA API)
+INSTAGRAM / SOUNDCLOUD /FACEBOOK / TWITTER FOLLOWERS	
