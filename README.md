@@ -44,7 +44,7 @@ I set out to try and uncover whether there are any attributes of a song or an ar
 
 ## Gathering the Data
 
-* [Link to beginning of relevant section of Notebook](https://github.com/danch12/GA_Capstone/blob/16b422104066f7b96929d8ae142c9320008343b4/Data%20Gathering%20and%20Cleaning%20Stage.ipynb#L53)
+* [Link to beginning of relevant section of Notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
 For this project the data was obtained in two parts. 
 
@@ -67,7 +67,7 @@ The next step was to get all Spotify’s musical components (e.g. danceability, 
 
 ## Cleaning the Data and Feature Engineering
 
-* [Link to beginning of relevant section of Notebook](https://github.com/danch12/GA_Capstone/blob/master/Data%20Gathering%20and%20Cleaning%20Stage.ipynb?short_path=8abe515#L816)
+* [Link to beginning of relevant section of Notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
 
 There was extensive cleaning of the Billboard data. The largest issue was that, Spotify's API retrieved a number of results for each search query. If the name of the artist was too long it would produce no results, therefore I had to remove featuring artists. Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. Luckily, the Python package Fuzzy Wuzzy helped massively. 
 
@@ -80,7 +80,7 @@ Once the data was clean, I engineered some new features, which seemed to be impo
 
 ## EDA
 
-[Link to EDA](https://github.com/danch12/GA_Capstone/blob/master/EDA.ipynb)
+[Link to EDA](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb)
 
 My initial visual analysis graphically illustrated trends in the musical components. 
 
@@ -102,7 +102,7 @@ The main takeaways from the EDA were -
 
 ## Modelling 
 
-[Link to beginning of modelling section](https://github.com/danch12/GA_Capstone/blob/master/Capstone%20Modelling%20and%20Evaluation%20phase.ipynb?short_path=90fa5f0#L262)
+[Link to beginning of modelling section](https://github.com/georgemccrae/capstone-project/blob/master/modelling%202.ipynb#L262)
 
 Before engineering new features, I ran a quick linear regression to see roughly what the cross-valdiated score was; at 0.22 I realised that this project needed a lot more work.
 
