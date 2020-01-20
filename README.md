@@ -1,6 +1,7 @@
 # capstone-project
 
-# What makes pop music POP
+# What makes pop music popular 
+
 Using machine learning to predict what makes a Spotify song popular 
 
 ## Table Of Contents
