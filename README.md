@@ -5,17 +5,17 @@ Using machine learning to predict what makes a Spotify song popular
 
 ## Table Of Contents
 * [Technologies Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#technologies-used)
-* [Packages Used](https://github.com/danch12/GA_Capstone/blob/master/README.md#packages-used)
-* [Methods Used](https://github.com/danch12/GA_Capstone/blob/master/README.md#methods-used)
-* [Introduction](https://github.com/danch12/GA_Capstone/blob/master/README.md#introduction)
-* [Gathering the Data](https://github.com/danch12/GA_Capstone/blob/master/README.md#gathering-the-data)
-* [Cleaning the Data and Feature Engineering](https://github.com/danch12/GA_Capstone#cleaning-the-data-and-feature-engineering)
-* [EDA](https://github.com/danch12/GA_Capstone#eda)
-* [Modelling](https://github.com/danch12/GA_Capstone#modelling)
-* [NLP and Further Modelling](https://github.com/danch12/GA_Capstone#nlp-and-modelling)
-* [Stacking Models](https://github.com/danch12/GA_Capstone#stacking-models)
-* [Evaluation](https://github.com/danch12/GA_Capstone#evaluation)
-* [Final Thoughts and Plans for the Future](https://github.com/danch12/GA_Capstone#final-thoughts-and-plans-for-the-future)
+* [Packages Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#packages-used)
+* [Methods Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#methods-used)
+* [Introduction](https://github.com/georgemccrae/capstone-project/blob/master/README.md#introduction)
+* [Gathering the Data](https://github.com/georgemccrae/capstone-project/blob/master/README.md#gathering-the-data)
+* [Cleaning the Data and Feature Engineering](https://github.com/georgemccrae/capstone-project#cleaning-the-data-and-feature-engineering)
+* [EDA](https://github.com/georgemccrae/capstone-project#eda)
+* [Modelling](https://github.com/georgemccrae/capstone-project#modelling)
+* [NLP and Further Modelling](https://github.com/georgemccrae/capstone-project#nlp-and-modelling)
+* [Stacking Models](https://github.com/georgemccrae/capstone-project#stacking-models)
+* [Evaluation](https://github.com/georgemccrae/capstone-project#evaluation)
+* [Final Thoughts and Plans for the Future](https://github.com/georgemccrae/capstone-project#final-thoughts-and-plans-for-the-future)
 
 ## Technologies Used
 * Python 3.0
