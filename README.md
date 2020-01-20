@@ -1,4 +1,4 @@
-# general assembly capstone-project
+# capstone-project
 
 # What makes pop music POP
 Using machine learning to predict what makes a Spotify song popular 
