@@ -86,7 +86,7 @@ My initial visual analysis graphically illustrated trends in the musical compone
 
 An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. Here is Spotify's description of how it is calculated.
 
-- - > “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
+- > “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
 
 
 The main takeaways from the EDA were - 
@@ -122,7 +122,8 @@ The obvious trend is that the Billboard Hot 100 will continue to musically conve
 ## Plans for the Future
 Due to time constraints I focused on the musical components and artist information derived from the Spotify API. However there are several other potentially brilliant predictors of popularity I can't wait to add:
 
-LYRICS (GENIUS API)
-NO. PRODUCERS (GENIUS API)
-ARTIST LOCATION (WIKIPEDIA API)
-INSTAGRAM / SOUNDCLOUD /FACEBOOK / TWITTER FOLLOWERS	
+#### LYRICS (GENIUS API)
+#### NO. PRODUCERS (GENIUS API)
+#### ARTIST LOCATION (WIKIPEDIA API)
+#### INSTAGRAM / SOUNDCLOUD /FACEBOOK / TWITTER FOLLOWERS	
+
