@@ -40,7 +40,6 @@ Looking across the internet I saw that Lending Club (a peer to peer lending comp
 
 ## Gathering the Data
 
-
 * [Link to beginning of relevant section of Notebook](https://github.com/danch12/GA_Capstone/blob/16b422104066f7b96929d8ae142c9320008343b4/Data%20Gathering%20and%20Cleaning%20Stage.ipynb#L53)
 
 First I used the Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. There was extensive cleaning to remove featuring artists. I then used Spotify’s API to extract information about the artist (number of followers, genre) and the musical components (e.g. danceability, tempo, duration) of the respective tracks. 
