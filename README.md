@@ -92,37 +92,32 @@ I made a seperate notebook for cleaning the genre tags here [here](https://githu
 
 * [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
 
-
 Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
 
-# genre classifcation method is not accurate, genre had no impact on the pop model
+
+genre classifcation method is not accurate, genre had no impact on the pop model
+
+AMAZING PLOT IN CODE AND SCREENSHOT
+
 
 
 ## EDA
 
 [Link to EDA notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb)
 
-My initial visual analysis graphically illustrated trends in the musical components. 
+My inital EDA was to look at correlation between the musical components and Spotify popularity. I found that loudness was the mostly highly correlated with the target at 0.35; overall not much correlation. Further, the highest correlation amongst the musical components was not surprisingly between 'Loudness' and 'Energy' at 0.69. Correlation between my engineering features and the target was more promising. I found that 'Time Since Release', 'Numnber of Spotify Followers' and 'Artist Familiarity' all had a correlation score of over 0.5, showing that there was at least some correlation. 
 
-An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. Here is Spotify's description of how it is calculated.
+Next I examined a histogram of all the musical features. I observed that most of them were not normally distributed and therefore a Power Tranformer might be needed during the modelling stage. 
 
-> “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
+Then I graphically illustrated, with a timeseries, trends in the musical components of tracks. There are detailed descriptions in the notebook.
 
-There were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
+An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. This was hence why I engineered the feature 'Time Since Release' which massively increased my models' predictiveness. Here is Spotify's description of how it is calculated.
+
+> “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past.”*
+
+Finally, there were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute).
 
 The main takeaways from the EDA were - 
-1) Rock and soul were the most popular music genres from the mid-60s to mid-70s. But as soul peaked in 1974 and slowly began to fade, rock continued to climb. Its run from 1982-86, when rock musicians occupied nearly 60% of available Hot 100 spots, is by far the most dominant stretch for any one genre.
-
-2) Despite all the attention paid to boy bands in the late '90s, it seems like R&B had no problem flourishing. Acts like Boyz II Men and Janet Jackson propelled the genre's popularity and ingratiated it with the masses.
-
-3) Country has had a tumultuous ride in the history of popular American music. It enjoyed middling popularity through the mid-'80s, when it all but dropped off the charts. Since 1999, however, it's seen a noticeable resurgence.
-
-4) Music trends have swung in favor of pop and hip-hop in the 2010s. Pop has owned the largest share of Billboard spots dating back to 2006, but has seen its popularity decline slightly since 2011. Meanwhile, rap has come on strong in the last two years. In fact, rap is on pace to occupy more than 30% of Hot 100 spots this year, higher than its previous peak in 2004.
-
-
-
-
-
 
 
 
@@ -143,6 +138,8 @@ By examining my coefficients I found that the variables: number of Spotify follo
 As I mentionned in the EDA section: you’re aiming to get your songs into automatically curated playlists or wonder how to get higher rankings in Spotify popularity index make sure you’re getting your listens now. That probably means it’s good to release songs frequently to stay relevant in the Spotify world.
 
 The obvious trend is that the Billboard Hot 100 will continue to musically converge, a path that might just be the natural progression of popular culture. give it enough time and we’ll all be listening to the same thing.
+
+ There was some unavoivable subjectivity in deducing which were outliers. 
 
 
 ## Plans for the Future
