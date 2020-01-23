@@ -35,8 +35,6 @@ Using machine learning to predict what makes a Spotify song popular
 
 I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
 
-
-
 I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
 
 
@@ -44,7 +42,7 @@ I set out to try and uncover whether there are any attributes of a song or an ar
 
 * [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
-For this project the data was obtained in two parts (Billboard Data & Spotify Data) and then merged:
+For this project the data was obtained in two parts and then merged:
 
 ### Billboard Data
 
@@ -66,13 +64,10 @@ Billboard's ranking method for the Top 100 is excellent because it stayed releva
 I used guoguo12's Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. 
 
 #### Cleaning 
-There was extensive cleaning of the Billboard data. The largest issue was that when I put the artist's name acquired from the Billboard API into the Spotify API, if the name of the artist was too long it would produce no results - therefore I had to remove featuring artists. 
+There was extensive cleaning of the Billboard data. The largest issue was that when I put the artist's name acquired from the Billboard API into the Spotify API, if the name of the artist was too long it would produce no results - therefore I had to remove featuring artists. This was simple is there was a 'featuring'. However &, comma, 'and', slash were all used synonymously. Therefore, I searched through all artists containing a comma etc and if the name appeared elsewhere then I would assume that it was a solo artist. I manually sorted through the remaining instances where a comma appeared and made some other exceptional lists. 
 
-Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. 
-
-The Python package  [Fuzzy Wuzzy](https://github.com/seatgeek/fuzzywuzzy) helped massively. 
-
-
+There were also cases where the Billboard and Spotify artist names didnt match up, so I created a dicitonary of such entries and used 
+the Python package [Fuzzy Wuzzy](https://github.com/seatgeek/fuzzywuzzy) to see if they were adequately similar. 
 
 ### Spotify Data
 
@@ -92,6 +87,15 @@ I used a two-step process to translate Spotify's genres to my own genre definiti
 I then Count-Vectorised again with these are column names. I wrote a wrote a short Python script to 'vote' on which genre to place the artist in. For instance, Spotify classifies Drake as "pop rap", "indie r&b", "alternative hip hop", and "hip hop". According to our mapping system, three of those genres fall under rap/hip-hop and one under R&B. Thus, Drake goes under rap/hip-hop.
 
 I made a seperate notebook for cleaning the genre tags here [here](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
+
+## Feature Engineering
+
+* [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
+
+
+Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
+
+# genre classifcation method is not accurate, genre had no impact on the pop model
 
 
 ## EDA
@@ -117,14 +121,7 @@ The main takeaways from the EDA were -
 
 
 
-## Feature Engineering
 
-* [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
-
-
-Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
-
-# genre classifcation method is not accurate, genre had no impact on the pop model
 
 
 
