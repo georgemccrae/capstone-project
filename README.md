@@ -35,14 +35,7 @@ Using machine learning to predict what makes a Spotify song popular
 
 I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
 
-Billboard's ranking method for the Top 100 is excellent because it stayed relevant with its ranking policy with the changing methods of discoverning and purchasing music.   [(more info here)](https://en.wikipedia.org/wiki/Billboard_Hot_100#Hot_100_policy_changes) 
 
-- 1958-1991: ranking determined by ratio of singles sales and airplay
-- 1991: Billboard begins collecting sales data digitally (using SoundScan) for quicker and more accurate charts
-- 1998: Billboard drops requirement that song must be released as a single to appear on the chart
-- 2005: Digital downloads (iTunes) included
-- 2012: On-demand streaming services (Spotify, Rhapsody) included
-- 2013: Video views (YouTube) included
 
 I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
 
@@ -51,12 +44,22 @@ I set out to try and uncover whether there are any attributes of a song or an ar
 
 * [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
-For this project the data was obtained in two parts:
+For this project the data was obtained in two parts (Billboard Data & Spotify Data) and then merged:
 
 ### Billboard Data
 
 #### Source 
 * [Billboard API](https://github.com/guoguo12/billboard-charts)
+* [Information of how the ranking system is calculated](https://en.wikipedia.org/wiki/Billboard_Hot_100#Hot_100_policy_changes) 
+
+Billboard's ranking method for the Top 100 is excellent because it stayed relevant with its ranking policy with the changing methods of discoverning and purchasing music.   
+
+- 1958-1991: ranking determined by ratio of singles sales and airplay
+- 1991: Billboard begins collecting sales data digitally (using SoundScan) for quicker and more accurate charts
+- 1998: Billboard drops requirement that song must be released as a single to appear on the chart
+- 2005: Digital downloads (iTunes) included
+- 2012: On-demand streaming services (Spotify, Rhapsody) included
+- 2013: Video views (YouTube) included
 
 #### Gathering 
 
@@ -76,7 +79,15 @@ Other than this merging problem, there weren't many NA values as the Billboard d
 The next step was to get all Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track. I used plamere's Spotify’s API to extract this. The Spotify API had about 96.5% of the ~21,200 songs to appear on these charts. For the remaining 753, I plugged in average numbers for each acoustic feature, just to have some placeholder data. I then put all those acoustic metadata back into the full Billboard list. 
 
 #### Cleaning 
-There were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
+The Spotify Data was mostly clean, Spotify's genre classification system provided additional challenges. The streaming service categorizes artists into over 1,300 specific, and often unheard of, music genres (anybody familiar with ["zydeco"](https://en.wikipedia.org/wiki/Zydeco)?). As the genre tags can only be acquired from the artist parameter, this creates a problem. It means that the genre label is not specific to each track but to the artist as a whole; therefore the tracks of an ecclectic artist who spans several genres (one artist had 22 genre tags) are likely to be mislabelled. 
+
+I used a two-step process to translate Spotify's genres to my own genre definition. First, I Count-Vectorised the whole column to see which terms appeared the most. I then manually sorted through them to make a list of real genres. For example, I ignored 'new' (stemming from 'new wave'). 
+
+* 'r&b', 'rock', 'metal', 'grunge', 'punk', 'pop', 'house', 'electronic', 'trance', 'dance', 'country', 'folk', 'jazz', 'blues', 'soul', 'disco', 'funk', 'trap', 'rap', 'freestyle', 'indie', 'classical', 'ska', 'reggae', 'dancehall', 'adult standards', 'hip hop'
+
+I then Count-Vectorised again with these are column names. I wrote a wrote a short Python script to 'vote' on which genre to place the artist in. For instance, Spotify classifies Drake as "pop rap", "indie r&b", "alternative hip hop", and "hip hop". According to our mapping system, three of those genres fall under rap/hip-hop and one under R&B. Thus, Drake goes under rap/hip-hop.
+
+I made a seperate notebook for cleaning the genre tags here [here](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
 
 ## EDA
@@ -87,8 +98,9 @@ My initial visual analysis graphically illustrated trends in the musical compone
 
 An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. Here is Spotify's description of how it is calculated.
 
-- > “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
+> “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently. Artist and album popularity is derived mathematically from track popularity. Note that the popularity value may lag actual popularity by a few days: the value is not updated in real time.”*
 
+There were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
 
 The main takeaways from the EDA were - 
 1) Rock and soul were the most popular music genres from the mid-60s to mid-70s. But as soul peaked in 1974 and slowly began to fade, rock continued to climb. Its run from 1982-86, when rock musicians occupied nearly 60% of available Hot 100 spots, is by far the most dominant stretch for any one genre.
@@ -108,6 +120,7 @@ The main takeaways from the EDA were -
 
 Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
 
+# genre classifcation method is not accurate, genre had no impact on the pop model
 
 
 
