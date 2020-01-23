@@ -1,6 +1,4 @@
-# capstone-project
-
-# What makes pop music popular 
+# An investigation into what makes Spotify’s music popular using machine learning
 
 Using machine learning to predict what makes a Spotify song popular 
 
@@ -9,9 +7,9 @@ Using machine learning to predict what makes a Spotify song popular
 * [Packages Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#packages-used)
 * [Methods Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#methods-used)
 * [Introduction](https://github.com/georgemccrae/capstone-project/blob/master/README.md#introduction)
-* [Gathering the Data](https://github.com/georgemccrae/capstone-project/blob/master/README.md#gathering-the-data)
-* [Cleaning the Data and Feature Engineering](https://github.com/georgemccrae/capstone-project#cleaning-the-data-and-feature-engineering)
+* [Gathering & Cleaning the Data](https://github.com/georgemccrae/capstone-project/blob/master/README.md#gathering-&-cleaning-the-data)
 * [EDA](https://github.com/georgemccrae/capstone-project#eda)
+* [Feature Engineering](https://github.com/georgemccrae/capstone-project#feature-engineering)
 * [Modelling](https://github.com/georgemccrae/capstone-project#modelling)
 * [Evaluation](https://github.com/georgemccrae/capstone-project#evaluation)
 * [Final Thoughts and Plans for the Future](https://github.com/georgemccrae/capstone-project#plans-for-the-future)
@@ -35,20 +33,9 @@ Using machine learning to predict what makes a Spotify song popular
 
 ## Introduction
 
-#### 
-
 I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
 
-I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
-
-
-## Gathering the Data
-
-* [Link to beginning of relevant section of Notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
-
-For this project the data was obtained in two parts. 
-
-Firstly I used the Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. Because of time constraints I ended up using a csv file from guoguo12. Billboard's ranking method for the Top 100 is excellent because it stayed relevant with its ranking policy with the changing methods of discoverning and purchasing music.   [(more info here)](https://en.wikipedia.org/wiki/Billboard_Hot_100#Hot_100_policy_changes) 
+Billboard's ranking method for the Top 100 is excellent because it stayed relevant with its ranking policy with the changing methods of discoverning and purchasing music.   [(more info here)](https://en.wikipedia.org/wiki/Billboard_Hot_100#Hot_100_policy_changes) 
 
 - 1958-1991: ranking determined by ratio of singles sales and airplay
 - 1991: Billboard begins collecting sales data digitally (using SoundScan) for quicker and more accurate charts
@@ -57,30 +44,44 @@ Firstly I used the Billboard API to acquire information about the top 100 songs 
 - 2012: On-demand streaming services (Spotify, Rhapsody) included
 - 2013: Video views (YouTube) included
 
-* [Billboard Top 100 Data](https://github.com/guoguo12/billboard-charts)
-
-The next step was to get all Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track. I used plamere's Spotify’s API to extract this. The Spotify API had about 96.5% of the ~21,200 songs to appear on these charts. For the remaining 753, I plugged in average numbers for each acoustic feature, just to have some placeholder data. I then put all those acoustic metadata back into the full Billboard list. 
+I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
 
 
-* [Spotify Data](https://github.com/plamere/spotipy)
+## Gathering & Cleaning the Data
 
+* [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
-## Cleaning the Data and Feature Engineering
+For this project the data was obtained in two parts:
 
-* [Link to beginning of relevant section of Notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
+### Billboard Data
 
+#### Source 
+* [Billboard API](https://github.com/guoguo12/billboard-charts)
+
+#### Gathering 
+
+I used guoguo12's Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. 
+
+#### Cleaning 
 There was extensive cleaning of the Billboard data. The largest issue was that, Spotify's API retrieved a number of results for each search query. If the name of the artist was too long it would produce no results, therefore I had to remove featuring artists. Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. Luckily, the Python package Fuzzy Wuzzy helped massively. 
 
 Other than this merging problem, there weren't many NA values as the Billboard data was fairly complete.
 
-Further, there were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
+### Spotify Data
 
-Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
+#### Source
+* [Spotify API](https://github.com/plamere/spotipy)
+
+#### Gathering 
+The next step was to get all Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track. I used plamere's Spotify’s API to extract this. The Spotify API had about 96.5% of the ~21,200 songs to appear on these charts. For the remaining 753, I plugged in average numbers for each acoustic feature, just to have some placeholder data. I then put all those acoustic metadata back into the full Billboard list. 
+
+#### Cleaning 
+There were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute). There was some unavoivable subjectivity in deducing which were outliers. 
 
 
 ## EDA
 
-[Link to EDA](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb)
+[Link to EDA notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb)
 
 My initial visual analysis graphically illustrated trends in the musical components. 
 
@@ -100,9 +101,20 @@ The main takeaways from the EDA were -
 
 
 
+## Feature Engineering
+
+* [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
+
+
+Once the data was clean, I engineered some new features, which seemed to be important in predicitng popularity: ‘time since release’, ‘artist familiarity’ and ‘artist longevity’ to significantly improve the predictive power of my model.
+
+
+
+
+
 ## Modelling 
 
-[Link to beginning of modelling section](https://github.com/georgemccrae/capstone-project/blob/master/modelling%202.ipynb#L262)
+[Link to Modelling notebook](https://github.com/georgemccrae/capstone-project/blob/master/modelling%202.ipynb#L262)
 
 Before engineering new features, I ran a quick linear regression to see roughly what the cross-valdiated score was; at 0.22 I realised that this project needed a lot more work.
 
