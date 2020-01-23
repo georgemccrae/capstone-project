@@ -66,9 +66,13 @@ Billboard's ranking method for the Top 100 is excellent because it stayed releva
 I used guoguo12's Billboard API to acquire information about the top 100 songs since 1958; including the week ID, chart position. 
 
 #### Cleaning 
-There was extensive cleaning of the Billboard data. The largest issue was that, Spotify's API retrieved a number of results for each search query. If the name of the artist was too long it would produce no results, therefore I had to remove featuring artists. Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. Luckily, the Python package Fuzzy Wuzzy helped massively. 
+There was extensive cleaning of the Billboard data. The largest issue was that when I put the artist's name acquired from the Billboard API into the Spotify API, if the name of the artist was too long it would produce no results - therefore I had to remove featuring artists. 
 
-Other than this merging problem, there weren't many NA values as the Billboard data was fairly complete.
+Further, if the artist had a short name then the Spotify API would often produce data for the wrong artist; so I manually iterated through them to figure out the correct one. 
+
+The Python package  [Fuzzy Wuzzy](https://github.com/seatgeek/fuzzywuzzy) helped massively. 
+
+
 
 ### Spotify Data
 
