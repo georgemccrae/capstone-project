@@ -1,4 +1,4 @@
-# An investigation into what makes Spotify’s music popular using machine learning
+# An investigation into what makes music on Spotify popular, using machine learning
 
 Using machine learning to predict what makes a Spotify song popular 
 
