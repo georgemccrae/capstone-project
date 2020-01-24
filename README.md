@@ -65,6 +65,11 @@ I used guoguo12's Billboard API to acquire information about the top 100 songs s
 #### Cleaning 
 There was extensive cleaning of the Billboard data. The largest issue was that when I put the artist's name acquired from the Billboard API into the Spotify API, if the name of the artist was too long it would produce no results - therefore I had to remove featuring artists. This was simple is there was a 'featuring'. However &, comma, 'and', slash were all used synonymously. Therefore, I searched through all artists containing a comma etc and if the name appeared elsewhere then I would assume that it was a solo artist. I manually sorted through the remaining instances where a comma appeared and made some other exceptional lists. 
 
+* [Data Scraped](https://github.com/georgemccrae/capstone-project/blob/master/images/image%201%20-%20data%20scraped.jpg
+)
+
+
+
 
 ### Spotify Data
 
