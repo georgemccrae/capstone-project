@@ -39,7 +39,7 @@ I set out to try and uncover whether there are any attributes of a song or an ar
 
 ## Gathering & Cleaning the Data
 
-* [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
+* [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/Gathering%20%26%20Cleaning%20the%20Data.ipynb#L53)
 
 For this project the data was obtained in two parts and then merged:
 
@@ -89,7 +89,7 @@ I made a seperate notebook for cleaning the genre tags [here](https://github.com
 
 ## Feature Engineering
 
-* [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb#L816)
+* [Link to Feature Engineering notebook](https://github.com/georgemccrae/capstone-project/blob/master/Feature%20Engineering.ipynb#L816)
 
 Once the data was clean, I ran a quick linear regression to see roughly what the cross-valdiated score was; at 0.22 I realised that this project needed a lot more work.
 
@@ -107,7 +107,7 @@ After engineering the all-important new features, my highest cross-validated sco
 
 ## EDA
 
-[Link to EDA notebook](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20eda%20%26%20feature%20engineering.ipynb)
+[Link to EDA notebook](https://github.com/georgemccrae/capstone-project/blob/master/EDA.ipynb)
 
 My inital EDA was to look at correlation between the musical components and Spotify popularity. I found that loudness was the mostly highly correlated with the target at 0.35; overall not much correlation. Further, the highest correlation amongst the musical components was not surprisingly between 'Loudness' and 'Energy' at 0.69. Correlation between my engineering features and the target was more promising. I found that 'Time Since Release', 'Numnber of Spotify Followers' and 'Artist Familiarity' all had a correlation score of over 0.5, showing that there was at least some correlation. 
 
@@ -132,7 +132,7 @@ Finally, there were some complications in removing outliers as some tracks were 
 
 ### Predicting Spotify track popularity 
 
-[Link to Modelling notebook](https://github.com/georgemccrae/capstone-project/blob/master/modelling%202.ipynb#L262)
+[Link to Modelling notebook](https://github.com/georgemccrae/capstone-project/blob/master/Modelling%20-%20Predicting%20Popularity.ipynb#L262)
 
 My final were features were:
 
