@@ -102,11 +102,10 @@ I engineered some new features, to significantly improve the predictive power of
 * ‘time since first charting’
 * 'percentage of genre dominance' - this had no impact on predicting popularity
 
+![engineered features explained](https://github.com/georgemccrae/capstone-project/blob/master/images/image%202%20-%20engineered%20features%20explained.jpg)
+
 After engineering the all-important new features, my highest cross-validated score of 0.68, a huge increase.
 
-INSERT SLIDE FROM PRESENTATION
-
-AMAZING PLOT IN CODE AND SCREENSHOT
 
 ## EDA
 
@@ -116,11 +115,15 @@ My inital EDA was to look at correlation between the musical components and Spot
 
 Next I examined a histogram of all the musical features. I observed that most of them were not normally distributed and therefore a Power Tranformer might be needed during the modelling stage. 
 
-Then I graphically illustrated, with a timeseries, trends in the musical components of tracks; DETAILED ANALYSIS CONTAINED IN NOTEBOOK.
+Then I graphically illustrated, with a timeseries, trends in the musical components of tracks.
+
+![trends in musical components](https://github.com/georgemccrae/capstone-project/blob/master/images/image%203%20-%20trends%20in%20musical%20components.jpg)
 
 An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. This was hence why I engineered the feature 'Time Since Release' which massively increased my models' predictiveness. Here is Spotify's description of how it is calculated.
 
 > “The popularity of the track. The value will be between 0 and 100, with **100 being the most popular.** The popularity is calculated by algorithm and is based, in the most part, on **the total number of plays the track has had and how recent those plays are.** Generally speaking, **songs that are being played a lot now will have a higher popularity** than songs that were played a lot in the past.”*
+
+![skewed spotify pop](https://github.com/georgemccrae/capstone-project/blob/master/images/image%204%20-%20skewed%20spotify%20popularity.png)
 
 At this point I droppped the column 'spot_artist_pop' because it's derived from the spotify track popularity. 
 
@@ -145,6 +148,8 @@ My highest cross-validation R2 score was 0.72 by Gridsearching on a Random Fores
 * artist_familiarity 0.035067
 * duration	0.022495	
 * liveness	0.019045
+
+![random forest feature importance](https://github.com/georgemccrae/capstone-project/blob/master/images/image%205%20-%20random%20forest%20feature%20importances.jpg)
 
 I also used an Elastic Net CV on a Linear Regression to get a score of R2 score 0.54. The advantage of using linear regression of course means that these coefficients are directly interpretable: 
 
