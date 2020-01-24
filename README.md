@@ -30,7 +30,6 @@ Using machine learning to predict what makes a Spotify song popular
 * Data Visualization
 * Regression
 
-
 ## Introduction
 
 I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
@@ -67,7 +66,6 @@ I used guoguo12's Billboard API to acquire information about the top 100 songs s
 There was extensive cleaning of the Billboard data. The largest issue was that when I put the artist's name acquired from the Billboard API into the Spotify API, if the name of the artist was too long it would produce no results - therefore I had to remove featuring artists. This was simple is there was a 'featuring'. However &, comma, 'and', slash were all used synonymously. Therefore, I searched through all artists containing a comma etc and if the name appeared elsewhere then I would assume that it was a solo artist. I manually sorted through the remaining instances where a comma appeared and made some other exceptional lists. 
 
 
-
 ### Spotify Data
 
 #### Source
@@ -98,19 +96,13 @@ I engineered some new features, to significantly improve the predictive power of
 * ‘artist familiarity’ 
 * 'peak chart position'
 * ‘time since first charting’
-* 'percentage of genre dominance'
+* 'percentage of genre dominance' - this had no impact on predicting popularity
 
 After engineering the all-important new features, my highest cross-validated score of 0.68, a huge increase.
 
-
-INSERT PHOTO FROM PRESENTATION
-
-
-genre classifcation method is not accurate, genre had no impact on the pop model
+INSERT SLIDE FROM PRESENTATION
 
 AMAZING PLOT IN CODE AND SCREENSHOT
-
-
 
 ## EDA
 
@@ -120,7 +112,7 @@ My inital EDA was to look at correlation between the musical components and Spot
 
 Next I examined a histogram of all the musical features. I observed that most of them were not normally distributed and therefore a Power Tranformer might be needed during the modelling stage. 
 
-Then I graphically illustrated, with a timeseries, trends in the musical components of tracks. There are detailed descriptions in the notebook.
+Then I graphically illustrated, with a timeseries, trends in the musical components of tracks; DETAILED ANALYSIS CONTAINED IN NOTEBOOK.
 
 An important finding was that Spotify gives higher popularity rankings for a new releases and artists that have released new music recently. Therefore my target variable, Spotify popularity, was skewed to be higher the more recent it is. This was hence why I engineered the feature 'Time Since Release' which massively increased my models' predictiveness. Here is Spotify's description of how it is calculated.
 
@@ -128,11 +120,7 @@ An important finding was that Spotify gives higher popularity rankings for a new
 
 At this point I droppped the column 'spot_artist_pop' because it's derived from the spotify track popularity. 
 
-
 Finally, there were some complications in removing outliers as some tracks were classified as double their BPM (Beats Per Minute).
-
-The main takeaways from the EDA were - 
-
 
 
 ## Modelling 
@@ -165,15 +153,10 @@ I also used an Elastic Net CV on a Linear Regression to get a score of R2 score 
 
 ## Evaluation
 
-By examining the coefficients I found that the variables: number of Spotify followers, artist familiarity and track longevity had the largest impact on track popularity.
+By examining the coefficients I found that the variables: 'Time Since First Charting', 'Number of Spotify followers', 'Artist Chart Familiarity' and 'Track Chart Longevity' had the largest impact on track popularity.
 
-
-As I mentionned in the EDA section: you’re aiming to get your songs into automatically curated playlists or wonder how to get higher 
-rankings in Spotify popularity index make sure you’re getting your listens now. That probably means it’s good to release songs frequently to stay relevant in the Spotify world.
-
-The obvious trend is that the Billboard Hot 100 will continue to musically converge, a path that might just be the natural progression of popular culture. give it enough time and we’ll all be listening to the same thing.
-
- There was some unavoivable subjectivity in deducing which were outliers. 
+In conclusion, if you are an artist aiming to get your songs into automatically curated playlists or wonder how to get higher 
+rankings in Spotify popularity index make sure you release songs frequently to stay relevant in the Spotify world. Further, if an artist wants to focus on getting a high Spotify score, then they should focus their efforts on trying to gain more followers as opposed to getting views on other mediums such as YouTube. Finally, although 'Duration' and 'Loudness' seem to have a small impact on a track's popularity, it seems as if musical components are largely irrelevant in predicting what makes a song popular. 
 
 
 ## Plans for the Future
@@ -183,4 +166,7 @@ Due to time constraints I focused on the musical components and artist informati
 #### LYRICS (GENIUS API)
 #### NO. PRODUCERS (GENIUS API)
 #### ARTIST LOCATION (WIKIPEDIA API)
+
+I also want to investigate homoegeneity in music. It seems as if the Billboard Hot 100 will continue to musically converge, give it enough time and we’ll all be listening to the same thing.
+
 
