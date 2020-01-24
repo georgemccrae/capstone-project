@@ -41,7 +41,7 @@ I set out to try and uncover whether there are any attributes of a song or an ar
 
 * [Link to Gathering & Cleaning Data notebook](https://github.com/georgemccrae/capstone-project/blob/master/Gathering%20%26%20Cleaning%20the%20Data.ipynb#L53)
 
-For this project the data was obtained in two parts and then merged:
+For this project the data was obtained in two parts and then merged together:
 
 ### Billboard Data
 
