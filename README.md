@@ -83,7 +83,7 @@ I used a two-step process to translate Spotify's genres to my own genre definiti
 
 I then Count-Vectorised again with these are column names. I wrote a wrote a short Python script to 'vote' on which genre to place the artist in. For instance, Spotify classifies Drake as "pop rap", "indie r&b", "alternative hip hop", and "hip hop". According to our mapping system, three of those genres fall under rap/hip-hop and one under R&B. Thus, Drake goes under rap/hip-hop.
 
-I made a seperate notebook for cleaning the genre tags here [here](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
+I made a seperate notebook for cleaning the genre tags [here](https://github.com/georgemccrae/capstone-project/blob/master/github%20-%20scraping.ipynb#L53)
 
 ## Feature Engineering
 
