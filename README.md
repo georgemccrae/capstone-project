@@ -32,7 +32,7 @@ Using machine learning to predict what makes a Spotify song popular
 
 ## Introduction
 
-I've always loved music. I was watching this [Youtube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
+I've always loved music. I was watching this [YouTube video](https://www.youtube.com/watch?v=scbbVSeKS4I&t=8s) on what make Lil Nas X's video so popular. It desribes how he used memes, search engine optimisation, remixs (which count towards chart placement), tiktok, memes, hopping on Red Dead Redemption's cowboy theme and classifying the song as 'country' on itunes and souncloud in order to remanouvere recommendation alogrithmns rather than trying to compete with songs in today's oversaturated hip-hip genre. All of these were ingenuious tactics which helped to make his song break records for weeks at #1. 
 
 I set out to try and uncover whether there are any attributes of a song or an artist which made it destined to be popular.
 
