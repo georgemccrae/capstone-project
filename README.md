@@ -7,7 +7,7 @@ Using machine learning to predict what makes a Spotify song popular
 * [Packages Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#packages-used)
 * [Methods Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#methods-used)
 * [Introduction](https://github.com/georgemccrae/capstone-project/blob/master/README.md#introduction)
-* [Gathering & Cleaning the Data](https://github.com/georgemccrae/capstone-project#gathering-&-cleaning-the-data)
+* [Gathering & Cleaning the Data](https://github.com/georgemccrae/capstone-project#gathering)
 * [Feature Engineering](https://github.com/georgemccrae/capstone-project#feature-engineering)
 * [EDA](https://github.com/georgemccrae/capstone-project#eda)
 * [Modelling](https://github.com/georgemccrae/capstone-project#modelling)
@@ -67,8 +67,6 @@ There was extensive cleaning of the Billboard data. The largest issue was that w
 
 ![Data Scraped](https://github.com/georgemccrae/capstone-project/blob/master/images/image%201%20-%20data%20scraped.jpg
 )
-
-
 
 ### Spotify Data
 
