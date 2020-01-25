@@ -71,10 +71,15 @@ There was extensive cleaning of the Billboard data. The largest issue was that w
 ### Spotify Data
 
 #### Source
-* [Spotify API](https://github.com/plamere/spotipy)
+* [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
+* [Spotipy (Python API)](https://spotipy.readthedocs.io/en/2.7.0/)
+* [Spotipy - plamere explains how to use Spotipi really well](https://github.com/plamere/spotipy)
+
 
 #### Gathering 
-The next step was to get all Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track. I used plamere's Spotify’s API to extract this and then merged it with the Billboard data. There were  cases where the Billboard and Spotify artist names didnt match up, so I created a dicitonary of such entries and used the Python package [Fuzzy Wuzzy](https://github.com/seatgeek/fuzzywuzzy) to see if they were adequately similar. 
+I used Spotipy, a lightweight Python library for the Spotify Web API. With Spotipy you get full access to all of the music data provided by the Spotify platform. Plus, it's much easier to use! I extracted Spotify’s musical components (e.g. danceability, tempo, duration) aswell as information about the artist (number of followers, genre) for each respective Billboard track, before merging it with the Billboard data. 
+
+N.B. There were  cases where the Billboard and Spotify artist names didnt match up, so I created a dicitonary of such entries and used the Python package [Fuzzy Wuzzy](https://github.com/seatgeek/fuzzywuzzy) to see if they were adequately similar. 
 
 #### Cleaning 
 The Spotify Data was mostly clean, Spotify's genre classification system provided additional challenges. The streaming service categorizes artists into over 1,300 specific, and often unheard of, music genres (anybody familiar with ["zydeco"](https://en.wikipedia.org/wiki/Zydeco)?). As the genre tags can only be acquired from the artist parameter, this creates a problem. It means that the genre label is not specific to each track but to the artist as a whole; therefore the tracks of an ecclectic artist who spans several genres (one artist had 22 genre tags) are likely to be mislabelled. 
