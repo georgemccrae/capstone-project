@@ -1,6 +1,6 @@
 # An investigation into what makes music on Spotify popular using machine learning
 
-Using machine learning to predict what makes a Spotify song popular 
+Capstone Project at General Assembly London, Data Science Immersive, 08/12/19
 
 ## Table Of Contents
 * [Technologies Used](https://github.com/georgemccrae/capstone-project/blob/master/README.md#technologies-used)
