@@ -139,7 +139,7 @@ Finally, there were some complications in removing outliers as some tracks were 
 
 [Link to Modelling notebook](https://github.com/georgemccrae/capstone-project/blob/master/Modelling%20-%20Predicting%20Popularity.ipynb#L262)
 
-My final were features were:
+My final features were:
 
 * 'acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence', 'duration', 'key', 'mode', 'time_signature', 'spot_followers', 'track_longevity', 'peak_rank', 'time'
 
